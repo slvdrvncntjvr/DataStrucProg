@@ -40,12 +40,17 @@ void printMetricsComparison(char* datasetType, int size,
         printf("BST is %.2fx taller than AVL\n", heightRatio);
     }
     
-    if (bstMetrics.time_taken > avlMetrics.time_taken) { // comparison of time
-        double speedup = bstMetrics.time_taken / avlMetrics.time_taken;
-        printf("AVL is %.2fx faster for insertions\n", speedup);
+    // comparison of time (with zero-check)
+    if (bstMetrics.time_taken > 0.000001 && avlMetrics.time_taken > 0.000001) {
+        if (bstMetrics.time_taken > avlMetrics.time_taken) {
+            double speedup = bstMetrics.time_taken / avlMetrics.time_taken;
+            printf("AVL is %.2fx faster for insertions\n", speedup);
+        } else {
+            double speedup = avlMetrics.time_taken / bstMetrics.time_taken;
+            printf("BST is %.2fx faster for insertions\n", speedup);
+        }
     } else {
-        double speedup = avlMetrics.time_taken / bstMetrics.time_taken;
-        printf("BST is %.2fx faster for insertions\n", speedup);
+        printf("Insertion times too small to measure accurately\n");
     }
     
     if (bstMetrics.comparisons > avlMetrics.comparisons) {
@@ -147,7 +152,9 @@ int main() {
         }
         
         printf("\n");
-        printHeader("DATASET SIZE: %d ELEMENTS");
+        char sizeHeader[100];
+        sprintf(sizeHeader, "DATASET SIZE: %d ELEMENTS", size);
+        printHeader(sizeHeader);
         printf("\n");
         
         generateRandomData(dataset, size); // test random data
@@ -167,13 +174,6 @@ int main() {
     
     printf("\n");
     printHeader("EXPERIMENT COMPLETE");
-    printf("Key Findings:\n");
-    printf("1. AVL trees maintain O(log n) height regardless of input\n");
-    printf("2. BST degenerates to O(n) height with sorted input\n");
-    printf("3. Rotation overhead is minimal compared to search gains\n");
-    printf("4. AVL is essential for worst-case performance guarantees\n");
-    printSeparator();
-    printf("\n");
     
     return 0;
 }
