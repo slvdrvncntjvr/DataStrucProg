@@ -1,4 +1,4 @@
-"""
+﻿"""
 ============================================================================
 AVL TREE IMPLEMENTATION IN PYTHON
 ============================================================================
@@ -178,7 +178,7 @@ class AVLTree:
             New root of the subtree (x)
         """
         if self.verbose:
-            print(f"  🔄 Performing RIGHT ROTATION on node {y.key}")
+            print(f"   Performing RIGHT ROTATION on node {y.key}")
             print(f"     Pivot: {y.key}, Moving up: {y.left.key}")
         
         # Save pointers
@@ -198,7 +198,7 @@ class AVLTree:
         self.stats.ll_rotations += 1
         
         if self.verbose:
-            print(f"     ✅ Rotation complete. New local root: {x.key}")
+            print(f"      Rotation complete. New local root: {x.key}")
         
         return x
     
@@ -224,7 +224,7 @@ class AVLTree:
             New root of the subtree (y)
         """
         if self.verbose:
-            print(f"  🔄 Performing LEFT ROTATION on node {x.key}")
+            print(f"   Performing LEFT ROTATION on node {x.key}")
             print(f"     Pivot: {x.key}, Moving up: {x.right.key}")
         
         # Save pointers
@@ -244,7 +244,7 @@ class AVLTree:
         self.stats.rr_rotations += 1
         
         if self.verbose:
-            print(f"     ✅ Rotation complete. New local root: {y.key}")
+            print(f"      Rotation complete. New local root: {y.key}")
         
         return y
     
@@ -267,7 +267,7 @@ class AVLTree:
             New root of the subtree
         """
         if self.verbose:
-            print(f"  🔄 Performing LEFT-RIGHT (DOUBLE) ROTATION on node {node.key}")
+            print(f"   Performing LEFT-RIGHT (DOUBLE) ROTATION on node {node.key}")
             print(f"     Step 1: Left rotation on left child {node.left.key}")
         
         # Step 1: Left rotation on left child
@@ -300,7 +300,7 @@ class AVLTree:
             New root of the subtree
         """
         if self.verbose:
-            print(f"  🔄 Performing RIGHT-LEFT (DOUBLE) ROTATION on node {node.key}")
+            print(f"   Performing RIGHT-LEFT (DOUBLE) ROTATION on node {node.key}")
             print(f"     Step 1: Right rotation on right child {node.right.key}")
         
         # Step 1: Right rotation on right child
@@ -367,23 +367,23 @@ class AVLTree:
         # Base case: found the insertion point
         if node is None:
             if self.verbose:
-                print(f"  ➕ Inserting {key} as new leaf node")
+                print(f"   Inserting {key} as new leaf node")
             self.stats.total_nodes += 1
             return AVLNode(key)
         
         # Recursive insertion
         if key < node.key:
             if self.verbose:
-                print(f"  ⬅️  {key} < {node.key}, going left")
+                print(f"    {key} < {node.key}, going left")
             node.left = self._insert_recursive(node.left, key)
         elif key > node.key:
             if self.verbose:
-                print(f"  ➡️  {key} > {node.key}, going right")
+                print(f"    {key} > {node.key}, going right")
             node.right = self._insert_recursive(node.right, key)
         else:
             # Duplicate key - not allowed in this implementation
             if self.verbose:
-                print(f"  ⚠️  Duplicate key {key}, ignoring")
+                print(f"    Duplicate key {key}, ignoring")
             return node
         
         # ====================================================================
@@ -392,7 +392,7 @@ class AVLTree:
         
         self.update_height(node)
         if self.verbose:
-            print(f"  📏 Updated height of node {node.key} to {node.height}")
+            print(f"   Updated height of node {node.key} to {node.height}")
         
         # ====================================================================
         # STEP 3: GET BALANCE FACTOR AND CHECK IF NODE BECAME UNBALANCED
@@ -405,7 +405,7 @@ class AVLTree:
                 status = "LEFT-HEAVY"
             elif balance < -1:
                 status = "RIGHT-HEAVY"
-            print(f"  ⚖️  Balance factor of node {node.key}: {balance} ({status})")
+            print(f"    Balance factor of node {node.key}: {balance} ({status})")
         
         # ====================================================================
         # STEP 4: IF UNBALANCED, PERFORM APPROPRIATE ROTATION
@@ -415,7 +415,7 @@ class AVLTree:
         # Tree is left-heavy AND left child is left-heavy or balanced
         if balance > 1 and key < node.left.key:
             if self.verbose:
-                print(f"  🔍 Detected LEFT-LEFT case at node {node.key}")
+                print(f"   Detected LEFT-LEFT case at node {node.key}")
                 print(f"     Cause: Inserted {key} in left subtree of left child {node.left.key}")
             return self.rotate_right(node)
         
@@ -423,7 +423,7 @@ class AVLTree:
         # Tree is right-heavy AND right child is right-heavy or balanced
         if balance < -1 and key > node.right.key:
             if self.verbose:
-                print(f"  🔍 Detected RIGHT-RIGHT case at node {node.key}")
+                print(f"   Detected RIGHT-RIGHT case at node {node.key}")
                 print(f"     Cause: Inserted {key} in right subtree of right child {node.right.key}")
             return self.rotate_left(node)
         
@@ -431,7 +431,7 @@ class AVLTree:
         # Tree is left-heavy BUT left child is right-heavy
         if balance > 1 and key > node.left.key:
             if self.verbose:
-                print(f"  🔍 Detected LEFT-RIGHT case at node {node.key}")
+                print(f"   Detected LEFT-RIGHT case at node {node.key}")
                 print(f"     Cause: Inserted {key} in right subtree of left child {node.left.key}")
             return self.rotate_left_right(node)
         
@@ -439,13 +439,13 @@ class AVLTree:
         # Tree is right-heavy BUT right child is left-heavy
         if balance < -1 and key < node.right.key:
             if self.verbose:
-                print(f"  🔍 Detected RIGHT-LEFT case at node {node.key}")
+                print(f"   Detected RIGHT-LEFT case at node {node.key}")
                 print(f"     Cause: Inserted {key} in left subtree of right child {node.right.key}")
             return self.rotate_right_left(node)
         
         # If we reach here, node is balanced
         if self.verbose:
-            print(f"  ✅ Node {node.key} remains balanced, no rotation needed")
+            print(f"   Node {node.key} remains balanced, no rotation needed")
         
         return node
     
@@ -515,22 +515,22 @@ class AVLTree:
         # Base case: key not found
         if node is None:
             if self.verbose:
-                print(f"  ⚠️  Key {key} not found in tree")
+                print(f"    Key {key} not found in tree")
             return node
         
         # Recursive deletion
         if key < node.key:
             if self.verbose:
-                print(f"  ⬅️  {key} < {node.key}, going left")
+                print(f"    {key} < {node.key}, going left")
             node.left = self._delete_recursive(node.left, key)
         elif key > node.key:
             if self.verbose:
-                print(f"  ➡️  {key} > {node.key}, going right")
+                print(f"    {key} > {node.key}, going right")
             node.right = self._delete_recursive(node.right, key)
         else:
             # Found the node to delete
             if self.verbose:
-                print(f"  🎯 Found node to delete: {key}")
+                print(f"   Found node to delete: {key}")
             
             # Case 1: Node with only one child or no child
             if node.left is None or node.right is None:
@@ -572,7 +572,7 @@ class AVLTree:
         
         self.update_height(node)
         if self.verbose:
-            print(f"  📏 Updated height of node {node.key} to {node.height}")
+            print(f"   Updated height of node {node.key} to {node.height}")
         
         # ====================================================================
         # STEP 3: GET BALANCE FACTOR
@@ -585,7 +585,7 @@ class AVLTree:
                 status = "LEFT-HEAVY"
             elif balance < -1:
                 status = "RIGHT-HEAVY"
-            print(f"  ⚖️  Balance factor of node {node.key}: {balance} ({status})")
+            print(f"    Balance factor of node {node.key}: {balance} ({status})")
         
         # ====================================================================
         # STEP 4: IF UNBALANCED, PERFORM APPROPRIATE ROTATION
@@ -597,29 +597,29 @@ class AVLTree:
         # LEFT-LEFT CASE
         if balance > 1 and self.get_balance(node.left) >= 0:
             if self.verbose:
-                print(f"  🔍 Detected LEFT-LEFT case at node {node.key}")
+                print(f"   Detected LEFT-LEFT case at node {node.key}")
             return self.rotate_right(node)
         
         # LEFT-RIGHT CASE
         if balance > 1 and self.get_balance(node.left) < 0:
             if self.verbose:
-                print(f"  🔍 Detected LEFT-RIGHT case at node {node.key}")
+                print(f"   Detected LEFT-RIGHT case at node {node.key}")
             return self.rotate_left_right(node)
         
         # RIGHT-RIGHT CASE
         if balance < -1 and self.get_balance(node.right) <= 0:
             if self.verbose:
-                print(f"  🔍 Detected RIGHT-RIGHT case at node {node.key}")
+                print(f"   Detected RIGHT-RIGHT case at node {node.key}")
             return self.rotate_left(node)
         
         # RIGHT-LEFT CASE
         if balance < -1 and self.get_balance(node.right) > 0:
             if self.verbose:
-                print(f"  🔍 Detected RIGHT-LEFT case at node {node.key}")
+                print(f"   Detected RIGHT-LEFT case at node {node.key}")
             return self.rotate_right_left(node)
         
         if self.verbose:
-            print(f"  ✅ Node {node.key} remains balanced after deletion")
+            print(f"   Node {node.key} remains balanced after deletion")
         
         return node
     
@@ -659,23 +659,23 @@ class AVLTree:
         # Base cases: root is null or key is at root
         if node is None:
             if self.verbose:
-                print(f"  ❌ Key {key} not found")
+                print(f"   Key {key} not found")
             return None
         
         if node.key == key:
             if self.verbose:
-                print(f"  ✅ Found key {key}")
+                print(f"   Found key {key}")
             return node
         
         # Key is smaller than root's key
         if key < node.key:
             if self.verbose:
-                print(f"  ⬅️  Searching left subtree of {node.key}")
+                print(f"    Searching left subtree of {node.key}")
             return self._search_recursive(node.left, key)
         
         # Key is greater than root's key
         if self.verbose:
-            print(f"  ➡️  Searching right subtree of {node.key}")
+            print(f"    Searching right subtree of {node.key}")
         return self._search_recursive(node.right, key)
     
     # ========================================================================
@@ -881,35 +881,35 @@ class AVLTree:
             print(f"Node with key {key} not found")
             return
         
-        print("╔════════════════════════════════════╗")
-        print("║       NODE INFORMATION             ║")
-        print("╠════════════════════════════════════╣")
-        print(f"║ Key:            {node.key:18} ║")
-        print(f"║ Height:         {node.height:18} ║")
-        print(f"║ Balance Factor: {self.get_balance(node):18} ║")
-        print(f"║ Left Child:     {'Yes' if node.left else 'No':18} ║")
+        print("")
+        print("       NODE INFORMATION             ")
+        print("")
+        print(f" Key:            {node.key:18} ")
+        print(f" Height:         {node.height:18} ")
+        print(f" Balance Factor: {self.get_balance(node):18} ")
+        print(f" Left Child:     {'Yes' if node.left else 'No':18} ")
         if node.left:
-            print(f"║   └─ Key:       {node.left.key:18} ║")
-        print(f"║ Right Child:    {'Yes' if node.right else 'No':18} ║")
+            print(f"    Key:       {node.left.key:18} ")
+        print(f" Right Child:    {'Yes' if node.right else 'No':18} ")
         if node.right:
-            print(f"║   └─ Key:       {node.right.key:18} ║")
-        print("╚════════════════════════════════════╝")
+            print(f"    Key:       {node.right.key:18} ")
+        print("")
     
     def print_statistics(self) -> None:
         """Print tree statistics"""
-        print("\n╔════════════════════════════════════════════╗")
-        print("║         TREE STATISTICS                    ║")
-        print("╠════════════════════════════════════════════╣")
-        print(f"║ Total Nodes:        {self.stats.total_nodes:20} ║")
-        print(f"║ Maximum Height:     {self.stats.max_height:20} ║")
-        print(f"║ Total Rotations:    {self.stats.total_rotations:20} ║")
-        print("║                                            ║")
-        print("║ Rotation Breakdown:                        ║")
-        print(f"║   Left-Left (LL):   {self.stats.ll_rotations:20} ║")
-        print(f"║   Right-Right (RR): {self.stats.rr_rotations:20} ║")
-        print(f"║   Left-Right (LR):  {self.stats.lr_rotations:20} ║")
-        print(f"║   Right-Left (RL):  {self.stats.rl_rotations:20} ║")
-        print("╚════════════════════════════════════════════╝\n")
+        print("\n")
+        print("         TREE STATISTICS                    ")
+        print("")
+        print(f" Total Nodes:        {self.stats.total_nodes:20} ")
+        print(f" Maximum Height:     {self.stats.max_height:20} ")
+        print(f" Total Rotations:    {self.stats.total_rotations:20} ")
+        print("                                            ")
+        print(" Rotation Breakdown:                        ")
+        print(f"   Left-Left (LL):   {self.stats.ll_rotations:20} ")
+        print(f"   Right-Right (RR): {self.stats.rr_rotations:20} ")
+        print(f"   Left-Right (LR):  {self.stats.lr_rotations:20} ")
+        print(f"   Right-Left (RL):  {self.stats.rl_rotations:20} ")
+        print("\n")
     
     # ========================================================================
     # VERIFICATION OPERATIONS
@@ -921,28 +921,28 @@ class AVLTree:
         
         Checks:
         1. BST property (left < root < right)
-        2. Balance property (|BF| ≤ 1 for all nodes)
+        2. Balance property (|BF|  1 for all nodes)
         3. Height property (heights are correctly maintained)
         
         Returns:
             True if valid AVL tree, False otherwise
         """
-        print("\n🔍 VERIFYING AVL TREE PROPERTIES...")
+        print("\n VERIFYING AVL TREE PROPERTIES...")
         
         # Check BST property
         is_bst = self._is_bst_util(self.root, float('-inf'), float('inf'))
-        print(f"   BST Property: {'✅ VALID' if is_bst else '❌ INVALID'}")
+        print(f"   BST Property: {' VALID' if is_bst else ' INVALID'}")
         
         # Check balance property
         is_balanced = self._is_balanced_util(self.root)
-        print(f"   Balance Property: {'✅ VALID' if is_balanced else '❌ INVALID'}")
+        print(f"   Balance Property: {' VALID' if is_balanced else ' INVALID'}")
         
         # Check heights
         heights_valid = self._verify_heights(self.root)
-        print(f"   Heights: {'✅ VALID' if heights_valid else '❌ INVALID'}")
+        print(f"   Heights: {' VALID' if heights_valid else ' INVALID'}")
         
         is_valid = is_bst and is_balanced and heights_valid
-        print(f"   Overall: {'✅ VALID AVL TREE' if is_valid else '❌ INVALID AVL TREE'}\n")
+        print(f"   Overall: {' VALID AVL TREE' if is_valid else ' INVALID AVL TREE'}\n")
         
         return is_valid
     
@@ -1011,4 +1011,4 @@ if __name__ == "__main__":
     # Verify AVL properties
     avl.verify_avl()
     
-    print("\n✅ AVL Tree implementation in Python complete!")
+    print("\n AVL Tree implementation in Python complete!")

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Comprehensive Verification Test for AVL Tree Implementation
 Tests all professor requirements
 """
@@ -22,7 +22,7 @@ def test_all_requirements():
         avl.insert(k)
     print(f'   Inserted {len(keys)} keys: {keys}')
     print(f'   Tree height: {avl.height(avl.root)}')
-    print('   Status: ✅ PASS')
+    print('   Status:  PASS')
     print()
     
     # Test 2: Search
@@ -31,9 +31,9 @@ def test_all_requirements():
     search_keys = [35, 50, 80, 999]
     for sk in search_keys:
         found = avl.search(sk)
-        status = "FOUND ✅" if found else "NOT FOUND (expected)"
+        status = "FOUND " if found else "NOT FOUND (expected)"
         print(f'   Searching for {sk:3d}: {status}')
-    print('   Status: ✅ PASS')
+    print('   Status:  PASS')
     print()
     
     # Test 3: Deletion
@@ -43,7 +43,7 @@ def test_all_requirements():
     for dk in delete_keys:
         avl.delete(dk)
         print(f'   Deleted key {dk}')
-    print('   Status: ✅ PASS')
+    print('   Status:  PASS')
     print()
     
     # Test 4: Rotations (Single)
@@ -55,15 +55,15 @@ def test_all_requirements():
     avl_rr.insert(10)
     avl_rr.insert(20)
     avl_rr.insert(30)
-    print('   RR case (10,20,30): ✅ Left rotation performed')
+    print('   RR case (10,20,30):  Left rotation performed')
     
     # LL rotation (single right)
     avl_ll = AVLTree()
     avl_ll.insert(30)
     avl_ll.insert(20)
     avl_ll.insert(10)
-    print('   LL case (30,20,10): ✅ Right rotation performed')
-    print('   Status: ✅ PASS')
+    print('   LL case (30,20,10):  Right rotation performed')
+    print('   Status:  PASS')
     print()
     
     # Test 5: Rotations (Double)
@@ -75,15 +75,15 @@ def test_all_requirements():
     avl_lr.insert(30)
     avl_lr.insert(10)
     avl_lr.insert(20)
-    print('   LR case (30,10,20): ✅ Left-Right rotation performed')
+    print('   LR case (30,10,20):  Left-Right rotation performed')
     
     # RL rotation
     avl_rl = AVLTree()
     avl_rl.insert(10)
     avl_rl.insert(30)
     avl_rl.insert(20)
-    print('   RL case (10,30,20): ✅ Right-Left rotation performed')
-    print('   Status: ✅ PASS')
+    print('   RL case (10,30,20):  Right-Left rotation performed')
+    print('   Status:  PASS')
     print()
     
     # Test 6: Traversals
@@ -100,15 +100,15 @@ def test_all_requirements():
     postorder = avl_trav.postorder_traversal()
     
     print(f'   Inorder (L-Root-R):  {inorder}')
-    print(f'     → Is sorted: {inorder == sorted(trav_keys)} ✅')
+    print(f'      Is sorted: {inorder == sorted(trav_keys)} ')
     
     print(f'   Preorder (Root-L-R): {preorder}')
-    print(f'     → Root first: {preorder[0] == avl_trav.root.key} ✅')
+    print(f'      Root first: {preorder[0] == avl_trav.root.key} ')
     
     print(f'   Postorder (L-R-Root): {postorder}')
-    print(f'     → Root last: {postorder[-1] == avl_trav.root.key} ✅')
+    print(f'      Root last: {postorder[-1] == avl_trav.root.key} ')
     
-    print('   Status: ✅ PASS')
+    print('   Status:  PASS')
     print()
     
     # Test 7: Balance Verification
@@ -121,19 +121,17 @@ def test_all_requirements():
     print('=' * 70)
     print('  VERIFICATION SUMMARY')
     print('=' * 70)
-    print('   ✅ Insertion operation: WORKING')
-    print('   ✅ Deletion operation: WORKING')
-    print('   ✅ Search operation: WORKING')
-    print('   ✅ Single rotations (LL, RR): WORKING')
-    print('   ✅ Double rotations (LR, RL): WORKING')
-    print('   ✅ Inorder traversal: WORKING')
-    print('   ✅ Preorder traversal: WORKING')
-    print('   ✅ Postorder traversal: WORKING')
+    print('    Insertion operation: WORKING')
+    print('    Deletion operation: WORKING')
+    print('    Search operation: WORKING')
+    print('    Single rotations (LL, RR): WORKING')
+    print('    Double rotations (LR, RL): WORKING')
+    print('    Inorder traversal: WORKING')
+    print('    Preorder traversal: WORKING')
+    print('    Postorder traversal: WORKING')
     print('=' * 70)
-    print('  ALL PROFESSOR REQUIREMENTS: ✅ VERIFIED')
+    print('  ALL PROFESSOR REQUIREMENTS:  VERIFIED')
     print('=' * 70)
-    print()
-    print('Your implementation is ready for submission!')
     print()
 
 

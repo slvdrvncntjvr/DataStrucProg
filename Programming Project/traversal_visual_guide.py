@@ -1,4 +1,4 @@
-"""
+﻿"""
 Quick Traversal Reference - AVL Tree
 Visual guide showing how each traversal method visits nodes.
 
