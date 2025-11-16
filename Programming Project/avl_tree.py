@@ -927,22 +927,22 @@ class AVLTree:
         Returns:
             True if valid AVL tree, False otherwise
         """
-        print("\n VERIFYING AVL TREE PROPERTIES...")
+        print("\nVERIFYING AVL TREE PROPERTIES...")
         
         # Check BST property
         is_bst = self._is_bst_util(self.root, float('-inf'), float('inf'))
-        print(f"   BST Property: {' VALID' if is_bst else ' INVALID'}")
+        print(f"   BST Property: {'VALID' if is_bst else 'INVALID'}")
         
         # Check balance property
         is_balanced = self._is_balanced_util(self.root)
-        print(f"   Balance Property: {' VALID' if is_balanced else ' INVALID'}")
+        print(f"   Balance Property: {'VALID' if is_balanced else 'INVALID'}")
         
         # Check heights
         heights_valid = self._verify_heights(self.root)
-        print(f"   Heights: {' VALID' if heights_valid else ' INVALID'}")
+        print(f"   Heights: {'VALID' if heights_valid else 'INVALID'}")
         
         is_valid = is_bst and is_balanced and heights_valid
-        print(f"   Overall: {' VALID AVL TREE' if is_valid else ' INVALID AVL TREE'}\n")
+        print(f"   Overall: {'VALID AVL TREE' if is_valid else 'INVALID AVL TREE'}\n")
         
         return is_valid
     
@@ -1011,4 +1011,4 @@ if __name__ == "__main__":
     # Verify AVL properties
     avl.verify_avl()
     
-    print("\n AVL Tree implementation in Python complete!")
+    print("\nAVL Tree implementation in Python complete!")

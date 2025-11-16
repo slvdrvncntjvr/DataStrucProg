@@ -29,10 +29,10 @@ class TestAVL:
     def test_result(self, test_name: str, passed: bool) -> None:
         """Record and print test result"""
         if passed:
-            print(f"✅ PASS: {test_name}")
+            print(f"PASS: {test_name}")
             self.tests_passed += 1
         else:
-            print(f"❌ FAIL: {test_name}")
+            print(f"FAIL: {test_name}")
             self.tests_failed += 1
     
     def test_node_creation(self) -> None:
@@ -360,9 +360,9 @@ class TestAVL:
     
     def run_all_tests(self) -> None:
         """Run all test cases"""
-        print("\n╔════════════════════════════════════════════════════════════╗")
-        print("║                AVL TREE TEST SUITE                         ║")
-        print("╚════════════════════════════════════════════════════════════╝")
+        print("\n" + "="*60)
+        print("           AVL TREE TEST SUITE")
+        print("="*60)
         
         self.test_node_creation()
         self.test_single_insertion()
@@ -386,20 +386,20 @@ class TestAVL:
         self.test_stress_test()
         
         # Print summary
-        print("\n╔════════════════════════════════════════════════════════════╗")
-        print("║                    TEST SUMMARY                            ║")
-        print("╠════════════════════════════════════════════════════════════╣")
-        print(f"║  Total Tests:  {self.tests_passed + self.tests_failed:3}                                         ║")
-        print(f"║  Passed:       {self.tests_passed:3} ✅                                      ║")
-        print(f"║  Failed:       {self.tests_failed:3} ❌                                      ║")
-        print("║                                                            ║")
+        print("\n" + "="*60)
+        print("                TEST SUMMARY")
+        print("="*60)
+        print(f"Total Tests:  {self.tests_passed + self.tests_failed}")
+        print(f"Passed:       {self.tests_passed}")
+        print(f"Failed:       {self.tests_failed}")
+        print()
         
         if self.tests_failed == 0:
-            print("║  Result:       ALL TESTS PASSED! 🎉                     ║")
+            print("Result:       ALL TESTS PASSED!")
         else:
-            print("║  Result:       SOME TESTS FAILED                        ║")
+            print("Result:       SOME TESTS FAILED")
         
-        print("╚════════════════════════════════════════════════════════════╝\n")
+        print("="*60 + "\n")
 
 
 def main():
@@ -408,12 +408,12 @@ def main():
     tester.run_all_tests()
     
     if tester.tests_failed == 0:
-        print("✅ AVL Tree implementation is correct!")
-        print("✅ All balance properties verified!")
-        print("✅ Ready for production use!\n")
+        print("AVL Tree implementation is correct!")
+        print("All balance properties verified!")
+        print("Ready for production use!\n")
         return 0
     else:
-        print("⚠️  Some tests failed. Please review the implementation.\n")
+        print("Some tests failed. Please review the implementation.\n")
         return 1
 
 
